@@ -8,18 +8,18 @@ class AudioRequestDto
 {
     private string $audioFilePath;
     private string $audioFileName;
-    private string $language;
+    private bool $isRussianLanguage;
     private bool $isLast;
 
     public function __construct(
         string $audioFilePath,
         string $audioFileName,
-        string $language,
+        bool $isRussianLanguage,
         bool $isLast
     ) {
         $this->audioFilePath = $audioFilePath;
         $this->audioFileName = $audioFileName;
-        $this->language = $language;
+        $this->isRussianLanguage = $isRussianLanguage;
         $this->isLast = $isLast;
     }
 
@@ -33,9 +33,9 @@ class AudioRequestDto
         return $this->audioFileName;
     }
 
-    public function getLanguage(): string
+    public function isRussianLanguage(): bool
     {
-        return $this->language;
+        return $this->isRussianLanguage;
     }
 
     public function isLast(): bool

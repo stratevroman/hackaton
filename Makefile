@@ -29,7 +29,7 @@ composer-install:
 	$(DOCKER_COMPOSE) php composer install
 
 composer-require:
-	$(DOCKER_COMPOSE) php composer require symfony/twig-bundle
+	$(DOCKER_COMPOSE) php composer require symfony/validator doctrine/annotations
 
 fresh-db: create-db
 
