@@ -3,7 +3,7 @@ PHP_CONTAINER = hackaton_php_1
 
 DOCKER_COMPOSE = docker-compose -f $(DOCKER_COMPOSE_FILE) exec
 
-start-with-dev-env: docker-build down up composer-install env-dev fresh-db migrate
+start-with-dev-env: docker-build down up composer-install env-dev fresh-db
 
 up:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
@@ -28,7 +28,10 @@ run-test:
 composer-install:
 	$(DOCKER_COMPOSE) php composer install
 
-fresh-db: drop-db create-db
+composer-require:
+	$(DOCKER_COMPOSE) php composer require symfony/twig-bundle
+
+fresh-db: create-db
 
 drop-db:
 	$(DOCKER_COMPOSE) php bin/console doctrine:database:drop --force
@@ -42,5 +45,5 @@ migrate:
 load-fixtures:
 	$(DOCKER_COMPOSE) php bin/console --no-interaction doctrine:fixtures:load
 
-composer-require:
-	$(DOCKER_COMPOSE) php composer require symfony/orm-pack
+create-api-test:
+	$(DOCKER_COMPOSE) php vendor/bin/codecept generate:cest api Controller/AudioController
