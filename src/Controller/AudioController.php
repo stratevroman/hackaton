@@ -92,7 +92,8 @@ class AudioController extends AbstractController
             throw new BadRequestHttpException();
         }
 
-        $newFileName = 'audio1.wav';
+        $newFileName = $audioFile->getClientOriginalName();
+
         $audioFile->move($this->getParameter('audio_directory'), $newFileName);
         $path = $this->getParameter('audio_directory').'/'.$newFileName;
 
@@ -195,6 +196,35 @@ class AudioController extends AbstractController
         }
 
         return $this->audioService->saveAudioText($audio, $audio2TextDto)->getAudioText();
+    }
+
+    /**
+     * @Route("/audio/{id}/text", name="update text by audio id", methods={"PUT"})
+     * @OA\RequestBody(
+     *     description="Parameters",
+     *     required=true,
+     *     @Model(type=AudioText::class)
+     * )
+     * @OA\Response(
+     *     response="200",
+     *     description="Обновленный текст аудио",
+     *     @Model(type=AudioText::class)
+     * )
+     * @ParamConverter(name="audioText", converter="dto")
+     */
+    public function updateAudioText(int $id, AudioText $audioText): AudioText
+    {
+        $audio = $this->audioRepository->find($id);
+
+        if ($audio === null) {
+            throw new NotFoundHttpException('Аудио не найдено');
+        }
+
+        $audio->setAudioText($audioText);
+
+        $newAudio = $this->audioRepository->save($audio);
+
+        return $newAudio->getAudioText();
     }
 
     /**

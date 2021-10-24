@@ -39,4 +39,11 @@ class AudioService
 
         return $this->audioRepository->save($audio);
     }
+
+    public function updateAudioText(Audio $audio, AudioText $audioText): AudioText
+    {
+        $currentAudioText = $audio->getAudioText();
+
+    }
+
 }
