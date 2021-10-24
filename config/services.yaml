@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     audio_directory: '%kernel.project_dir%/public/uploads/audio'
+    process_app_host: 'http://sel3-common-ml-1.skyeng.link:5000'
 
 services:
 
@@ -26,8 +27,18 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    app.api.client.process.core:
+        class: GuzzleHttp\Client
+        arguments:
+            - base_uri: '%process_app_host%/'
+
     JMS\Serializer\Serializer: '@jms_serializer'
 
-#    App\Converter\ParamDeserializer:
-#        tags: [{name: "request.param_converter", converter: "dto"}]
+    App\Service\ProcessCoreService:
+        class: \App\Service\ProcessCoreService
+        arguments:
+            $client: '@app.api.client.process.core'
+
+    App\Converter\ParamDeserializer:
+        tags: [{name: "request.param_converter", converter: "dto"}]
 

@@ -28,8 +28,8 @@ run-test:
 composer-install:
 	$(DOCKER_COMPOSE) php composer install
 
-composer-require:
-	$(DOCKER_COMPOSE) php composer require symfony/validator doctrine/annotations
+composer-require-example:
+	$(DOCKER_COMPOSE) php composer require orm-fixtures --dev
 
 fresh-db: create-db
 

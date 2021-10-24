@@ -35,6 +35,11 @@ class Group
      */
     private ArrayCollection $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=AudioTextDetail::class, inversedBy="badWords")
+     */
+    private $audioTextDetail;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -89,6 +94,18 @@ class Group
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getAudioTextDetail(): ?AudioTextDetail
+    {
+        return $this->audioTextDetail;
+    }
+
+    public function setAudioTextDetail(?AudioTextDetail $audioTextDetail): self
+    {
+        $this->audioTextDetail = $audioTextDetail;
 
         return $this;
     }

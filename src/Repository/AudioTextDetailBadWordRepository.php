@@ -2,37 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Audio;
+use App\Entity\AudioTextDetailBadWord;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Audio|null find($id, $lockMode = null, $lockVersion = null)
- * @method Audio|null findOneBy(array $criteria, array $orderBy = null)
- * @method Audio[]    findAll()
- * @method Audio[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AudioTextDetailBadWord|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AudioTextDetailBadWord|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AudioTextDetailBadWord[]    findAll()
+ * @method AudioTextDetailBadWord[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AudioRepository extends ServiceEntityRepository
+class AudioTextDetailBadWordRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Audio::class);
-    }
-
-    /**
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMException
-     */
-    public function save(Audio $audio): Audio
-    {
-        $this->getEntityManager()->persist($audio);
-        $this->getEntityManager()->flush();
-
-        return $audio;
+        parent::__construct($registry, AudioTextDetailBadWord::class);
     }
 
     // /**
-    //  * @return Audio[] Returns an array of Audio objects
+    //  * @return AudioTextDetailBadWord[] Returns an array of AudioTextDetailBadWord objects
     //  */
     /*
     public function findByExampleField($value)
@@ -49,7 +37,7 @@ class AudioRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Audio
+    public function findOneBySomeField($value): ?AudioTextDetailBadWord
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

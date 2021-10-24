@@ -6,21 +6,15 @@ namespace App\Dto;
 
 class AudioResponseDto
 {
-    private string $text;
+    private int $id;
 
-    public function __construct(string $text)
+    public function __construct(int $id)
     {
-        $this->text = $text;
+        $this->id = $id;
     }
 
-
-    public function getText(): string
+    public function getId(): int
     {
-        return $this->text;
-    }
-
-    public function setText(string $text): void
-    {
-        $this->text = $text;
+        return $this->id;
     }
 }

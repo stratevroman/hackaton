@@ -2,37 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Audio;
+use App\Entity\AudioTextDetail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Audio|null find($id, $lockMode = null, $lockVersion = null)
- * @method Audio|null findOneBy(array $criteria, array $orderBy = null)
- * @method Audio[]    findAll()
- * @method Audio[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AudioTextDetail|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AudioTextDetail|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AudioTextDetail[]    findAll()
+ * @method AudioTextDetail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AudioRepository extends ServiceEntityRepository
+class AudioTextDetailRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Audio::class);
-    }
-
-    /**
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMException
-     */
-    public function save(Audio $audio): Audio
-    {
-        $this->getEntityManager()->persist($audio);
-        $this->getEntityManager()->flush();
-
-        return $audio;
+        parent::__construct($registry, AudioTextDetail::class);
     }
 
     // /**
-    //  * @return Audio[] Returns an array of Audio objects
+    //  * @return AudioTextDetail[] Returns an array of AudioTextDetail objects
     //  */
     /*
     public function findByExampleField($value)
@@ -49,7 +37,7 @@ class AudioRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Audio
+    public function findOneBySomeField($value): ?AudioTextDetail
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
