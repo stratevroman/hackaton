@@ -50,10 +50,10 @@ class AudioTextDetail
     private ArrayCollection $badWords;
 
     /**
-     * @ORM\ManyToOne(targetEntity=AudioText::class, inversedBy="audioTextDetails")
+     * @ORM\ManyToOne(targetEntity=AudioText::class, inversedBy="details")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $audioText;
+    private AudioText $audioText;
 
     public function __construct()
     {

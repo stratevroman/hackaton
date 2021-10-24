@@ -3,7 +3,7 @@ PHP_CONTAINER = hackaton_php_1
 
 DOCKER_COMPOSE = docker-compose -f $(DOCKER_COMPOSE_FILE) exec
 
-start-with-dev-env: docker-build down up composer-install env-dev create-db migrate
+start-with-dev-env: docker-build down up composer-install env-dev create-db migrate load-fixtures
 
 up:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d

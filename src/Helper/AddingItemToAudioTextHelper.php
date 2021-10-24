@@ -13,7 +13,7 @@ class AddingItemToAudioTextHelper
         $newAudioText = $currentAudioText;
 
         $newAudioText->setBody($currentAudioText->getBody() . $addingAudioText->getBody());
-        foreach ($addingAudioText->getAudioTextDetails() as $audioTextDetail) {
+        foreach ($addingAudioText->getDetails() as $audioTextDetail) {
             $newAudioText->addAudioTextDetail($audioTextDetail);
         }
 

@@ -35,11 +35,11 @@ class AudioText
     /**
      * @ORM\OneToMany(targetEntity=AudioTextDetail::class, mappedBy="audioText", orphanRemoval=true)
      */
-    private ArrayCollection $audioTextDetails;
+    private ArrayCollection $details;
 
     public function __construct()
     {
-        $this->audioTextDetails = new ArrayCollection();
+        $this->details = new ArrayCollection();
     }
 
     public function getId(): int
@@ -81,15 +81,15 @@ class AudioText
     /**
      * @return Collection|AudioTextDetail[]
      */
-    public function getAudioTextDetails(): Collection
+    public function getDetails(): Collection
     {
-        return $this->audioTextDetails;
+        return $this->details;
     }
 
     public function addAudioTextDetail(AudioTextDetail $audioTextDetail): self
     {
-        if (!$this->audioTextDetails->contains($audioTextDetail)) {
-            $this->audioTextDetails[] = $audioTextDetail;
+        if (!$this->details->contains($audioTextDetail)) {
+            $this->details[] = $audioTextDetail;
             $audioTextDetail->setAudioText($this);
         }
 
@@ -98,7 +98,7 @@ class AudioText
 
     public function removeAudioTextDetail(AudioTextDetail $audioTextDetail): self
     {
-        if ($this->audioTextDetails->removeElement($audioTextDetail)) {
+        if ($this->details->removeElement($audioTextDetail)) {
             // set the owning side to null (unless already changed)
             if ($audioTextDetail->getAudioText() === $this) {
                 $audioTextDetail->setAudioText(null);
