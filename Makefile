@@ -29,7 +29,7 @@ composer-install:
 	$(DOCKER_COMPOSE) php composer install
 
 composer-require-example:
-	$(DOCKER_COMPOSE) php composer require sensio/framework-extra-bundle
+	$(DOCKER_COMPOSE) php composer require nelmio/cors-bundle
 
 fresh-db: create-db
 

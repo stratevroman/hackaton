@@ -13,8 +13,9 @@ class UpdateAudioTextHelper
         $resultAudioText = clone $currentAudioText;
         $resultAudioText->setBody($newAudioText->getBody());
         $resultAudioText->setTotalNumberOfCharacters(mb_strlen($newAudioText->getBody()));
-        foreach ($resultAudioText->getDetails() as $detail) {
 
+        foreach ($resultAudioText->getDetails() as $detail) {
+//            $detail->
         }
 
         return $resultAudioText;
