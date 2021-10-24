@@ -30,12 +30,17 @@ class AudioText
      * @ORM\JoinColumn(nullable=false)
      * @Serializer\Exclude()
      */
-    private Audio $audio;
+    private ?Audio $audio;
 
     /**
-     * @ORM\OneToMany(targetEntity=AudioTextDetail::class, mappedBy="audioText", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=AudioTextDetail::class, mappedBy="audioText", orphanRemoval=true, cascade={"persist"})
      */
-    private ArrayCollection $details;
+    private Collection $details;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $totalNumberOfCharacters;
 
     public function __construct()
     {
@@ -59,7 +64,7 @@ class AudioText
         return $this;
     }
 
-    public function getAudio(): Audio
+    public function getAudio(): ?Audio
     {
         return $this->audio;
     }
@@ -104,6 +109,18 @@ class AudioText
                 $audioTextDetail->setAudioText(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTotalNumberOfCharacters(): int
+    {
+        return $this->totalNumberOfCharacters;
+    }
+
+    public function setTotalNumberOfCharacters(int $totalNumberOfCharacters): self
+    {
+        $this->totalNumberOfCharacters = $totalNumberOfCharacters;
 
         return $this;
     }

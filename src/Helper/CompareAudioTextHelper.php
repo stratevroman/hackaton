@@ -10,6 +10,7 @@ class CompareAudioTextHelper
 {
     public static function isSame(AudioText $audioTextFirst, AudioText $audioTextSecond): bool
     {
-        return $audioTextFirst === $audioTextSecond;
+
+        return $audioTextFirst->getBody() === $audioTextSecond->getBody();
     }
 }

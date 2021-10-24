@@ -7,7 +7,7 @@ use App\Entity\AudioText;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class AudioTextFixtures extends Fixture
+class AudioFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -15,11 +15,7 @@ class AudioTextFixtures extends Fixture
             ->setName('audio.mp3')
             ->setUrl('/audio.mp3');
 
-        $audioText = (new AudioText())
-            ->setBody('text')
-            ->setAudio($audio);
-
-        $manager->persist($audioText);
+        $manager->persist($audio);
 
         $manager->flush();
     }

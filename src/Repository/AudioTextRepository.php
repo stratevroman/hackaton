@@ -19,6 +19,18 @@ class AudioTextRepository extends ServiceEntityRepository
         parent::__construct($registry, AudioText::class);
     }
 
+    /**
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function save(AudioText $audioText): AudioText
+    {
+        $this->getEntityManager()->persist($audioText);
+        $this->getEntityManager()->flush();
+
+        return $audioText;
+    }
+
     // /**
     //  * @return AudioText[] Returns an array of AudioText objects
     //  */

@@ -14,6 +14,7 @@ use App\Service\ProcessCoreService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Nelmio\ApiDocBundle\Annotation\Model;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -176,12 +177,14 @@ class AudioController extends AbstractController
      *     required=true,
      *     @Model(type=Audio2TextDto::class)
      *
+     *
      * )
      * @OA\Response(
      *     response="200",
      *     description="Текст аудио",
      *     @Model(type=AudioText::class)
      * )
+     * @ParamConverter(name="audio2TextDto", converter="dto")
      */
     public function postAudioText(int $id, Audio2TextDto $audio2TextDto): AudioText
     {

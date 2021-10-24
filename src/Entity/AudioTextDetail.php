@@ -45,9 +45,9 @@ class AudioTextDetail
     private int $endAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=AudioTextDetailBadWord::class, mappedBy="audioTextDetail")
+     * @ORM\OneToMany(targetEntity=AudioTextDetailBadWord::class, mappedBy="audioTextDetail",  cascade={"persist"})
      */
-    private ArrayCollection $badWords;
+    private Collection $badWords;
 
     /**
      * @ORM\ManyToOne(targetEntity=AudioText::class, inversedBy="details")
