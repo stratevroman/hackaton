@@ -16,9 +16,12 @@ class Audio2TextDtoToAudioTextDataTransformer
     {
         $audioText = new AudioText();
         $audioText->setBody($audio2TextDto->getText());
-        $audioText->setTotalNumberOfCharacters(mb_strlen($audio2TextDto->getText()));
+        $lengthFullText = mb_strlen($audio2TextDto->getText());
+
+        $audioText->setTotalNumberOfCharacters($lengthFullText);
 
         $numberOfParts = count($audio2TextDto->getTextParts());
+
 
         for ($i = 0; $i < $numberOfParts; $i++) {
             $audioTextDetail = new AudioTextDetail();
@@ -26,7 +29,13 @@ class Audio2TextDtoToAudioTextDataTransformer
             $audioTextDetail->setStartAt(self::convertBitrateToMilliseconds($audio2TextDto->getTextPartCoords()[$i][0]));
             $audioTextDetail->setEndAt(self::convertBitrateToMilliseconds($audio2TextDto->getTextPartCoords()[$i][1]));
             $audioTextDetail->setNumberOfCharacters(mb_strlen($audio2TextDto->getTextParts()[$i]));
-            $audioTextDetail->setOffsetAtFromStartText(0);
+
+            $offsetFull = 0;
+            foreach ($audioText->getDetails() as $detail) {
+                $offsetFull = $offsetFull + $detail->getNumberOfCharacters();
+            }
+
+            $audioTextDetail->setOffsetAtFromStartText($offsetFull);
 
             foreach ($audio2TextDto->getBadWords() as $badWordArray) {
                 foreach ($badWordArray as $badWord) {
